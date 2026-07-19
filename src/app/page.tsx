@@ -1,319 +1,252 @@
-'use client'
-import { useState } from 'react'
-
 export default function Home() {
-  const [form, setForm] = useState({ name: '', email: '', org: '', role: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
-    <main style={{ background: '#0a0a0a', color: '#e8e8e8', fontFamily: "'Inter', 'Helvetica Neue', sans-serif", minHeight: '100vh' }}>
+    <main style={{ background: '#0a0a0a', color: '#f0f0f0', fontFamily: "'Inter', 'Helvetica Neue', sans-serif", minHeight: '100vh' }}>
 
       {/* NAV */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid #1a1a1a', background: 'rgba(10,10,10,0.92)', backdropFilter: 'blur(12px)', padding: '0 5%' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60 }}>
-          <span style={{ fontSize: 15, fontWeight: 600, letterSpacing: '0.02em', color: '#fff' }}>Adam Biotech</span>
-          <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
-            <a href="#problem" style={{ fontSize: 13, color: '#888', textDecoration: 'none' }}>Problem</a>
-            <a href="#approach" style={{ fontSize: 13, color: '#888', textDecoration: 'none' }}>Approach</a>
-            <a href="#product" style={{ fontSize: 13, color: '#888', textDecoration: 'none' }}>Product</a>
-            <a href="#team" style={{ fontSize: 13, color: '#888', textDecoration: 'none' }}>Team</a>
-            <a href="#contact" style={{ fontSize: 13, color: '#fff', textDecoration: 'underline', textUnderlineOffset: 3 }}>Partner with us →</a>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid #1a1a1a', background: 'rgba(10,10,10,0.95)', backdropFilter: 'blur(8px)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '60px' }}>
+          <span style={{ fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Adam Biotech</span>
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <a href="#approach" style={{ color: '#888', textDecoration: 'none', fontSize: '0.85rem' }}>Our Approach</a>
+            <a href="#product" style={{ color: '#888', textDecoration: 'none', fontSize: '0.85rem' }}>Product</a>
+            <a href="#team" style={{ color: '#888', textDecoration: 'none', fontSize: '0.85rem' }}>Team</a>
+            <a href="#contact" style={{ color: '#f0f0f0', textDecoration: 'underline', fontSize: '0.85rem' }}>Work with us →</a>
           </div>
         </div>
       </nav>
 
       {/* HERO */}
-      <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 5% 80px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: 600, height: 600, background: 'radial-gradient(circle, rgba(80,40,120,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ maxWidth: 780, position: 'relative' }}>
-          <p style={{ fontSize: 12, letterSpacing: '0.15em', color: '#555', textTransform: 'uppercase', marginBottom: 32 }}>Adam Biotech</p>
-          <h1 style={{ fontSize: 'clamp(40px, 6vw, 80px)', fontWeight: 300, lineHeight: 1.1, color: '#fff', margin: '0 0 28px', letterSpacing: '-0.02em' }}>
-            The quality standard<br />for human tumor models.
-          </h1>
-          <p style={{ fontSize: 18, color: '#777', lineHeight: 1.7, maxWidth: 540, margin: '0 auto 48px' }}>
-            We make tumor models labs can actually trust. Every model is certified before it ships — so your experiments start on solid ground.
-          </p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 56 }}>
-            <a href="#contact" style={{ fontSize: 14, color: '#fff', textDecoration: 'underline', textUnderlineOffset: 4 }}>Request early access →</a>
-            <a href="#approach" style={{ fontSize: 14, color: '#555', textDecoration: 'underline', textUnderlineOffset: 4 }}>How it works →</a>
-          </div>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['YC W27', 'NSF I-Corps', 'Dempsey Innovation', 'Founders Inc'].map(b => (
-              <span key={b} style={{ fontSize: 11, color: '#444', border: '1px solid #222', borderRadius: 4, padding: '4px 12px', letterSpacing: '0.05em' }}>{b}</span>
-            ))}
-          </div>
+      <section style={{ paddingTop: '120px', paddingBottom: '80px', maxWidth: '1100px', margin: '0 auto', padding: '120px 2rem 80px' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+          {['YC W27', 'NSF', 'Dempsey Innovation', 'Founders Inc'].map(badge => (
+            <span key={badge} style={{ fontSize: '0.7rem', color: '#666', border: '1px solid #2a2a2a', padding: '0.25rem 0.6rem', borderRadius: '4px', letterSpacing: '0.05em' }}>{badge}</span>
+          ))}
         </div>
+        <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.1, margin: '0 0 1.5rem', color: '#fff', maxWidth: '700px' }}>
+          The quality standard for human tumor models.
+        </h1>
+        <p style={{ fontSize: '1.1rem', color: '#888', maxWidth: '540px', lineHeight: 1.7, margin: '0 0 2.5rem' }}>
+          Most lab tumor models fail silently — giving researchers false results they don&apos;t catch until it&apos;s too late. Adam Biotech builds human tumor models that are verified to work before they ever leave our lab.
+        </p>
+        <a href="#contact" style={{ color: '#f0f0f0', textDecoration: 'underline', fontSize: '1rem' }}>Request a sample →</a>
       </section>
 
       {/* STATS */}
       <section style={{ borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '0 5%' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
           {[
-            { value: '$128K', label: 'wasted per lab per year\nfrom failed models' },
-            { value: '90%', label: 'accuracy detecting\na bad model before use' },
-            { value: '$4.9B', label: 'pre-clinical testing\nmarket size' },
-            { value: '11/13', label: 'major pharma buyers\nexpressed purchase intent' },
-          ].map((s, i) => (
-            <div key={i} style={{ padding: '40px 24px', borderRight: i < 3 ? '1px solid #1a1a1a' : 'none' }}>
-              <div style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 300, color: '#fff', marginBottom: 8, letterSpacing: '-0.02em' }}>{s.value}</div>
-              <div style={{ fontSize: 13, color: '#555', lineHeight: 1.5, whiteSpace: 'pre-line' }}>{s.label}</div>
+            { value: '$128K', label: 'wasted per lab each year on failed models' },
+            { value: '90%', label: 'accuracy catching problems before they reach you' },
+            { value: '$4.9B', label: 'drug-testing market we are entering' },
+            { value: '11 of 13', label: 'pharma buyers said they would purchase' },
+          ].map((stat, i) => (
+            <div key={i} style={{ padding: '2.5rem 1.5rem', borderRight: i < 3 ? '1px solid #1a1a1a' : 'none' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', marginBottom: '0.4rem' }}>{stat.value}</div>
+              <div style={{ fontSize: '0.8rem', color: '#666', lineHeight: 1.5 }}>{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 01 - THE PROBLEM */}
-      <section id="problem" style={{ padding: '100px 5%', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>01 · The Problem</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: 0 }}>
-                Most tumor models fail — and nobody knows until it's too late.
-              </h2>
-            </div>
-            <div style={{ paddingTop: 48 }}>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8, marginBottom: 20 }}>
-                Drug companies run experiments on tissue models that look fine but produce misleading results. The failure is invisible: no error message, just bad data — discovered months later, after the compound and the budget are gone.
-              </p>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8 }}>
-                A single failed batch can cost a lab over $128,000 and push a research program back by months. The industry has no quality standard for the models it relies on most.
-              </p>
-            </div>
+      {/* 01 THE PROBLEM */}
+      <section id="problem" style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>01 · THE PROBLEM</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: 0, lineHeight: 1.2 }}>Lab tumor models fail — and nobody notices until it&apos;s too late.</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginTop: 60 }}>
-            {[
-              { n: '01', title: 'Silent failures', body: 'Models that pass visual inspection still produce unreliable drug-response data — with no warning.' },
-              { n: '02', title: 'Wasted resources', body: 'Labs spend months and hundreds of thousands of dollars on experiments built on unqualified models.' },
-              { n: '03', title: 'No quality layer', body: 'The $4.9B pre-clinical testing market has no standard for certifying whether a model is actually fit for use.' },
-            ].map(c => (
-              <div key={c.n} style={{ padding: '32px', border: '1px solid #1a1a1a' }}>
-                <p style={{ fontSize: 12, color: '#444', marginBottom: 16, letterSpacing: '0.08em' }}>{c.n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 500, color: '#fff', marginBottom: 12 }}>{c.title}</h3>
-                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{c.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 02 - OUR APPROACH */}
-      <section id="approach" style={{ padding: '100px 5%', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start', marginBottom: 60 }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>02 · Our Approach</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: 0 }}>
-                We certify every model before it ships.
-              </h2>
-            </div>
-            <div style={{ paddingTop: 48 }}>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8, marginBottom: 20 }}>
-                Before any Adam model reaches a lab, we run a full quality assessment — checking that it will produce reliable results for the specific experiment it's being used for. Not just a visual inspection. A real certification.
-              </p>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8 }}>
-                Think of it like a quality certificate for your experiment. Models that pass, ship. Models that don't, get rebuilt. Every shipment comes with documented evidence that it's ready to use.
-              </p>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2 }}>
-            {[
-              { n: '01', step: 'Build', body: 'We manufacture a human tumor model to precise specifications using advanced tissue engineering.' },
-              { n: '02', step: 'Measure', body: 'We collect data throughout the manufacturing process — tracking every variable that affects quality.' },
-              { n: '03', step: 'Qualify', body: 'We run a biological assessment to confirm the model will produce reliable drug-response data.' },
-              { n: '04', step: 'Ship', body: 'Only certified models leave our facility — each accompanied by a quality certificate.' },
-            ].map(s => (
-              <div key={s.n} style={{ padding: '32px', border: '1px solid #1a1a1a' }}>
-                <p style={{ fontSize: 12, color: '#444', marginBottom: 16, letterSpacing: '0.08em' }}>{s.n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 500, color: '#fff', marginBottom: 12 }}>{s.step}</h3>
-                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 03 - PRODUCT */}
-      <section id="product" style={{ padding: '100px 5%', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>03 · OvaMatrix-R</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: '0 0 24px' }}>
-                A certified human ovarian tumor model, ready to use.
-              </h2>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8, marginBottom: 32 }}>
-                OvaMatrix-R is our first product — a human ovarian cancer model built for pharmaceutical drug testing. It comes certified, documented, and ready to run your assay from day one.
-              </p>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8, marginBottom: 32 }}>
-                No rebuilding from scratch. No uncertainty about whether the model is valid. Just a reliable starting point for your research.
-              </p>
-              <a href="#contact" style={{ fontSize: 14, color: '#fff', textDecoration: 'underline', textUnderlineOffset: 4 }}>Request a sample →</a>
-            </div>
-            <div>
-              <div style={{ border: '1px solid #1a1a1a' }}>
-                {[
-                  { label: 'Model type', value: 'Human ovarian cancer (HGSOC)' },
-                  { label: 'Format', value: '96-well plate — standard lab equipment' },
-                  { label: 'Quality guarantee', value: 'Certificate of assay validity with every order' },
-                  { label: 'Ready to use', value: 'Within 24 hours of arrival' },
-                  { label: 'Pricing', value: '$4,000 setup · $2,300/month' },
-                  { label: 'Application', value: 'Pre-clinical drug testing, oncology research' },
-                ].map((row, i, arr) => (
-                  <div key={row.label} style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', padding: '18px 24px', borderBottom: i < arr.length - 1 ? '1px solid #1a1a1a' : 'none' }}>
-                    <span style={{ fontSize: 13, color: '#444' }}>{row.label}</span>
-                    <span style={{ fontSize: 13, color: '#ccc' }}>{row.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 04 - WHY NOW */}
-      <section id="why" style={{ padding: '100px 5%', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start', marginBottom: 60 }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>04 · Why Now</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: 0 }}>
-                The industry is ready for a quality standard. No one has built it yet.
-              </h2>
-            </div>
-            <div style={{ paddingTop: 48 }}>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8 }}>
-                Regulators are shifting away from animal models. Pharma companies are actively looking for better human tissue options. The market is large — and the gap is clear.
-              </p>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2 }}>
-            {[
-              { n: '01', title: 'FDA backing', body: 'The FDA now formally accepts advanced human tissue models for drug safety testing — replacing animal requirements.' },
-              { n: '02', title: '$4.9B market gap', body: 'The pre-clinical testing market is nearly $5 billion — with no established quality standard for the models used.' },
-              { n: '03', title: 'Pharma demand', body: '11 out of 13 major pharmaceutical companies we spoke with said they would buy certified human tumor models.' },
-              { n: '04', title: 'Ovarian cancer urgency', body: 'Ovarian cancer has one of the lowest survival rates of any cancer — and one of the fewest research tools.' },
-            ].map(s => (
-              <div key={s.n} style={{ padding: '32px', border: '1px solid #1a1a1a' }}>
-                <p style={{ fontSize: 12, color: '#444', marginBottom: 16, letterSpacing: '0.08em' }}>{s.n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 500, color: '#fff', marginBottom: 12 }}>{s.title}</h3>
-                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 05 - TEAM */}
-      <section id="team" style={{ padding: '100px 5%', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start', marginBottom: 60 }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>05 · Team</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: 0 }}>
-                Built by scientists and engineers who've worked in the lab.
-              </h2>
-            </div>
-            <div style={{ paddingTop: 48 }}>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8 }}>
-                We understand the frustration of building research on unreliable models. That's why we're building the standard the field has needed for years.
-              </p>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 40 }}>
-            {[
-              { name: 'Dharshini Maru', role: 'CEO & Co-founder', bio: 'Biomedical engineer with deep expertise in tissue engineering and cancer biology. Led foundational work in advanced tumor model design.' },
-              { name: 'Vitaliy Zagorodnov', role: 'CTO/CSO & Co-founder', bio: 'Engineer and scientist with a background in bioprinting systems, machine learning, and quality assurance for complex biological manufacturing.' },
-            ].map(p => (
-              <div key={p.name} style={{ padding: '40px', border: '1px solid #1a1a1a' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#1a1a1a', marginBottom: 20 }} />
-                <h3 style={{ fontSize: 18, fontWeight: 500, color: '#fff', marginBottom: 6 }}>{p.name}</h3>
-                <p style={{ fontSize: 13, color: '#444', marginBottom: 16, letterSpacing: '0.05em' }}>{p.role}</p>
-                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.7 }}>{p.bio}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            {['YC W27', 'NSF I-Corps', 'Dempsey Innovation', 'Founders Inc'].map(b => (
-              <span key={b} style={{ fontSize: 12, color: '#444', border: '1px solid #222', borderRadius: 4, padding: '6px 14px' }}>{b}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 06 - CONTACT */}
-      <section id="contact" style={{ padding: '100px 5%' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            <div>
-              <p style={{ fontSize: 12, letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: 20 }}>06 · Contact</p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.02em', margin: '0 0 24px' }}>
-                Work with us.
-              </h2>
-              <p style={{ fontSize: 16, color: '#666', lineHeight: 1.8, marginBottom: 32 }}>
-                We're looking for research partners, early customers, and investors who want to help set the quality standard for human tumor models.
-              </p>
-              <p style={{ fontSize: 14, color: '#444' }}>founders@adambiotech.com</p>
-            </div>
-            <div>
-              {submitted ? (
-                <div style={{ padding: 40, border: '1px solid #1a1a1a', textAlign: 'center' }}>
-                  <p style={{ fontSize: 16, color: '#fff', marginBottom: 8 }}>Message sent.</p>
-                  <p style={{ fontSize: 14, color: '#555' }}>We'll be in touch within 48 hours.</p>
+          <div>
+            <p style={{ color: '#888', lineHeight: 1.8, marginBottom: '2rem', fontSize: '0.95rem' }}>
+              When a pharmaceutical company tests a drug, it uses lab-grown tumor samples to see if the drug works. But most of those samples are unreliable — they behave differently batch to batch, and there&apos;s no way to know until a study is already ruined.
+            </p>
+            <p style={{ color: '#888', lineHeight: 1.8, marginBottom: '2.5rem', fontSize: '0.95rem' }}>
+              That silent failure costs labs an average of $128,000 per year in wasted time, compounds, and effort. Across the industry, it&apos;s one of the biggest hidden drains on drug development.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              {[
+                { num: '01', title: 'Silent failures', desc: 'Models look fine but produce misleading results' },
+                { num: '02', title: 'Wasted cycles', desc: '$128K lost per lab per year on bad data' },
+                { num: '03', title: 'No standard', desc: 'The field has no agreed quality bar — yet' },
+              ].map(card => (
+                <div key={card.num} style={{ padding: '1.2rem', border: '1px solid #1a1a1a' }}>
+                  <div style={{ fontSize: '0.65rem', color: '#444', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>{card.num}</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ddd', marginBottom: '0.4rem' }}>{card.title}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: 1.5 }}>{card.desc}</div>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  {[
-                    { key: 'name', label: 'Name', placeholder: 'Your name' },
-                    { key: 'email', label: 'Email', placeholder: 'you@company.com' },
-                    { key: 'org', label: 'Organization', placeholder: 'Company or institution' },
-                    { key: 'role', label: 'Role', placeholder: 'e.g. Research Lead, VP BD, Investor' },
-                  ].map(f => (
-                    <div key={f.key} style={{ marginBottom: 28 }}>
-                      <label style={{ display: 'block', fontSize: 11, letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: 8 }}>{f.label}</label>
-                      <input
-                        type={f.key === 'email' ? 'email' : 'text'}
-                        placeholder={f.placeholder}
-                        required
-                        value={(form as Record<string, string>)[f.key]}
-                        onChange={e => setForm(prev => ({ ...prev, [f.key]: e.target.value }))}
-                        style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid #2a2a2a', padding: '8px 0', fontSize: 15, color: '#ccc', outline: 'none', boxSizing: 'border-box' }}
-                      />
-                    </div>
-                  ))}
-                  <div style={{ marginBottom: 36 }}>
-                    <label style={{ display: 'block', fontSize: 11, letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: 8 }}>Message</label>
-                    <textarea
-                      placeholder="Tell us what you're working on..."
-                      rows={4}
-                      value={form.message}
-                      onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid #2a2a2a', padding: '8px 0', fontSize: 15, color: '#ccc', outline: 'none', resize: 'none', boxSizing: 'border-box' }}
-                    />
-                  </div>
-                  <button type="submit" style={{ fontSize: 14, color: '#fff', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 4, padding: 0 }}>
-                    Send message →
-                  </button>
-                </form>
-              )}
+              ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 02 OUR APPROACH */}
+      <section id="approach" style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>02 · OUR APPROACH</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: 0, lineHeight: 1.2 }}>We certify every model before it ships.</h2>
+          </div>
+          <div>
+            <p style={{ color: '#888', lineHeight: 1.8, marginBottom: '2.5rem', fontSize: '0.95rem' }}>
+              Adam Biotech builds human ovarian tumor models using an advanced 3D bioprinting process — and then runs every single model through a rigorous quality check before it leaves our lab. If a model doesn&apos;t meet our standards, it doesn&apos;t ship. Simple as that.
+            </p>
+            <p style={{ color: '#888', lineHeight: 1.8, marginBottom: '2.5rem', fontSize: '0.95rem' }}>
+              This is the quality layer the drug-testing field has been missing. Researchers can finally trust their models — and stop losing months of work to results that can&apos;t be replicated.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0' }}>
+              {[
+                { step: '01', label: 'Build', desc: 'We construct a 3D human tumor model to your spec' },
+                { step: '02', label: 'Measure', desc: 'Our system monitors how the model forms and behaves' },
+                { step: '03', label: 'Qualify', desc: 'Each model is scored against strict release criteria' },
+                { step: '04', label: 'Ship', desc: 'Only certified models reach your lab' },
+              ].map((s, i) => (
+                <div key={s.step} style={{ padding: '1.5rem 1rem', borderLeft: i > 0 ? '1px solid #1a1a1a' : 'none', borderTop: '1px solid #1a1a1a' }}>
+                  <div style={{ fontSize: '0.65rem', color: '#444', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>{s.step}</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#ddd', marginBottom: '0.4rem' }}>{s.label}</div>
+                  <div style={{ fontSize: '0.72rem', color: '#666', lineHeight: 1.5 }}>{s.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 OVAMATRIX-R */}
+      <section id="product" style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>03 · PRODUCT</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 1.5rem', lineHeight: 1.2 }}>OvaMatrix-R</h2>
+            <p style={{ color: '#888', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+              Our first product is a certified ovarian cancer model built for drug response testing. Ovarian cancer is one of the deadliest cancers with some of the fewest treatment options — it urgently needs better lab models, and researchers know it.
+            </p>
+            <p style={{ color: '#888', lineHeight: 1.8, fontSize: '0.95rem' }}>
+              OvaMatrix-R ships ready to use, quality-certified, and accompanied by documentation so researchers know exactly what they&apos;re working with.
+            </p>
+          </div>
+          <div style={{ border: '1px solid #1a1a1a' }}>
+            {[
+              { label: 'Cancer type', value: 'High-grade serous ovarian cancer' },
+              { label: 'Format', value: '96-well plate (standard lab compatible)' },
+              { label: 'Quality certification', value: 'Included — every model batch tested' },
+              { label: 'Hardware', value: '$4,000 one-time setup' },
+              { label: 'Monthly subscription', value: '$2,300/month (models + support)' },
+              { label: 'Lead time', value: 'Contact us for availability' },
+            ].map((row, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 1.5rem', borderBottom: i < 5 ? '1px solid #1a1a1a' : 'none', gap: '1rem' }}>
+                <span style={{ fontSize: '0.78rem', color: '#555' }}>{row.label}</span>
+                <span style={{ fontSize: '0.78rem', color: '#ccc', textAlign: 'right' }}>{row.value}</span>
+              </div>
+            ))}
+            <div style={{ padding: '1.5rem' }}>
+              <a href="#contact" style={{ color: '#f0f0f0', textDecoration: 'underline', fontSize: '0.85rem' }}>Request a sample →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 04 WHY NOW */}
+      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>04 · WHY NOW</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: 0, lineHeight: 1.2 }}>The drug-testing industry is changing — fast.</h2>
+          </div>
+          <div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              {[
+                { num: '01', title: 'Regulators are pushing for human models', desc: 'The FDA is actively encouraging a shift away from animal testing toward human-based lab models. Demand is growing by policy, not just preference.' },
+                { num: '02', title: 'A $4.9B market with no quality standard', desc: 'The preclinical drug-testing market is nearly $5 billion — and no one has set the quality bar for tumor models yet. That gap is Adam\'s opportunity.' },
+                { num: '03', title: 'Strong buyer intent already confirmed', desc: '11 out of 13 pharma buyers we spoke with said they\'d purchase a certified tumor model. The demand is real and waiting.' },
+                { num: '04', title: 'Ovarian cancer is underserved', desc: 'Ovarian cancer has a 50% mortality rate and fewer treatment options than almost any other cancer. It\'s a disease where better lab models can directly save lives.' },
+              ].map((item, i) => (
+                <div key={item.num} style={{ padding: '1.5rem', border: '1px solid #1a1a1a', marginTop: '-1px', marginLeft: i % 2 !== 0 ? '-1px' : '0' }}>
+                  <div style={{ fontSize: '0.65rem', color: '#444', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>{item.num}</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ddd', marginBottom: '0.5rem', lineHeight: 1.4 }}>{item.title}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: 1.6 }}>{item.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 05 TEAM */}
+      <section id="team" style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>05 · TEAM</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 1.5rem', lineHeight: 1.2 }}>Built by researchers who know the problem firsthand.</h2>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+              {['YC W27', 'NSF Supported', 'Dempsey Innovation', 'Founders Inc'].map(b => (
+                <span key={b} style={{ fontSize: '0.65rem', color: '#555', border: '1px solid #2a2a2a', padding: '0.2rem 0.5rem', borderRadius: '3px' }}>{b}</span>
+              ))}
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            {[
+              { name: 'Dharshini Marimuthu', role: 'CEO & Co-founder', bio: 'Bioengineering researcher with deep expertise in tumor biology and preclinical drug testing.' },
+              { name: 'Vitaliy Yurkiv', role: 'CTO & Co-founder', bio: 'Bioprinting engineer with experience in advanced manufacturing and quality systems.' },
+            ].map(person => (
+              <div key={person.name} style={{ padding: '1.5rem', border: '1px solid #1a1a1a' }}>
+                <div style={{ width: '40px', height: '40px', background: '#1a1a1a', borderRadius: '50%', marginBottom: '1rem' }} />
+                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#ddd', marginBottom: '0.3rem' }}>{person.name}</div>
+                <div style={{ fontSize: '0.72rem', color: '#555', marginBottom: '0.8rem' }}>{person.role}</div>
+                <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: 1.6 }}>{person.bio}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 06 CONTACT */}
+      <section id="contact" style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div>
+            <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', marginBottom: '1rem' }}>06 · CONTACT</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 1.5rem', lineHeight: 1.2 }}>Let&apos;s talk about what you&apos;re working on.</h2>
+            <p style={{ color: '#888', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1rem' }}>
+              Whether you&apos;re a pharma partner, research lab, or investor — we want to hear from you.
+            </p>
+            <p style={{ color: '#555', fontSize: '0.85rem' }}>founders@adambiotech.com</p>
+          </div>
+          <form style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
+            {[
+              { label: 'NAME', placeholder: 'Your name', type: 'text' },
+              { label: 'EMAIL', placeholder: 'you@company.com', type: 'email' },
+              { label: 'ORGANIZATION', placeholder: 'Lab or company name', type: 'text' },
+              { label: 'ROLE', placeholder: 'e.g. Research Director, Investor', type: 'text' },
+            ].map(field => (
+              <div key={field.label}>
+                <label style={{ display: 'block', fontSize: '0.65rem', color: '#555', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>{field.label}</label>
+                <input
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid #2a2a2a', padding: '0.5rem 0', color: '#f0f0f0', fontSize: '0.9rem', outline: 'none', boxSizing: 'border-box' }}
+                />
+              </div>
+            ))}
+            <div>
+              <label style={{ display: 'block', fontSize: '0.65rem', color: '#555', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>MESSAGE</label>
+              <textarea
+                placeholder="What are you working on? How can we help?"
+                rows={4}
+                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid #2a2a2a', padding: '0.5rem 0', color: '#f0f0f0', fontSize: '0.9rem', outline: 'none', resize: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
+            <button type="submit" style={{ background: 'transparent', border: 'none', color: '#f0f0f0', fontSize: '0.9rem', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left', padding: 0 }}>
+              Send message →
+            </button>
+          </form>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ borderTop: '1px solid #1a1a1a', padding: '32px 5%' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: 13, color: '#333' }}>Adam Biotech © 2026</span>
-          <span style={{ fontSize: 13, color: '#333' }}>founders@adambiotech.com</span>
-        </div>
+      <footer style={{ borderTop: '1px solid #1a1a1a', padding: '2rem', maxWidth: '1100px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: '0.75rem', color: '#444' }}>© 2025 Adam Biotech Inc.</span>
+        <span style={{ fontSize: '0.75rem', color: '#444' }}>founders@adambiotech.com</span>
       </footer>
 
     </main>
-  )
+  );
 }
