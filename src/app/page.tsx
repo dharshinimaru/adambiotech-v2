@@ -80,7 +80,7 @@ export default function Home() {
                 { n: '02', t: 'Silent failures', b: 'A model can look healthy and still give completely wrong drug-response results.' },
                 { n: '03', t: 'Wasted resources', b: 'Labs often only discover the problem after months of experiments.' },
               ].map(c => (
-                <div key={cnn} style={{ background: '#0a0a0a', padding: '24px 18px' }}>
+                <div key={c.n} style={{ background: '#0a0a0a', padding: '24px 18px' }}>
                   <p style={{ fontSize: 11, color: '#333', marginBottom: 10 }}>{c.n}</p>
                   <p style={{ fontSize: 13, color: '#bbb', fontWeight: 500, marginBottom: 6 }}>{c.t}</p>
                   <p style={{ fontSize: 12, color: '#555', lineHeight: 1.6 }}>{c.b}</p>
@@ -174,7 +174,7 @@ export default function Home() {
               { n: '01', t: 'FDA is moving away from animal testing', b: 'New FDA guidance encourages human-relevant models for drug development — creating real urgency for better 3D tumor assays.' },
               { n: '02', t: 'A $4.9B market with no quality standard', b: 'The preclinical CRO space is massive and growing. Nobody yet offers certified, verified tumor models at scale.' },
               { n: '03', t: '11 of 13 pharma buyers said they\'d switch', b: 'In early conversations, 11 out of 13 pharma and biotech teams said they would use Adam if the quality guarantee existed.' },
-              { n: '04', t: 'Ovarian cancer needs better tools', b: 'It\'s one of the most lethal cancers. Survival rates haven\'t improved much in decades — largely because preclinical models don\'t reliably predict treatment response.' },
+              { n: '04', t: 'Ovarian cancer needs better tools', b: 'It\'s one of the most lethal cancers. Survival rates haven\'t improved much in decades — largely because preclinical models don't reliably predict treatment response.' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gap: 16, padding: '24px 0', borderBottom: i < 3 ? '1px solid #1c1c1c' : 'none' }}>
                 <span style={{ fontSize: 11, color: '#333', paddingTop: 2 }}>{item.n}</span>
@@ -212,7 +212,7 @@ export default function Home() {
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {['YC W27', 'NSF Grant', 'Dempsey Innovation Challenge', 'Founders Inc'].map(b => (
-                <span key={b} style={{ fontSize: 11, padding: '4px 10px', border: '1px solid #222', borderRadius: 20, color: '#444', letterSpacing: '0.05em' }}>{b}</span>
+                <span key={b} style={{ fontSize: 11, padding: '4px 10px', border: '1px solid #222', borderRadius: 20, color: '#444', letterSpacing: '0.05em' }}>{b</span>
               ))}
             </div>
           </div>
