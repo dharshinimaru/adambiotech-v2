@@ -1,127 +1,164 @@
 'use client';
-
 import { useState } from 'react';
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    role: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', org: '', role: '', message: '' });
+  const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const mailto = `mailto:founders@adambiotech.com?subject=Partnership inquiry from ${formData.name}&body=Name: ${formData.name}%0AEmail: ${formData.email}%0AOrganization: ${formData.organization}%0ARole: ${formData.role}%0A%0A${formData.message}`;
-    window.location.href = mailto;
-    setSubmitted(true);
-  };
+  const navLinks = [
+    { href: '#problem', label: 'Problem' },
+    { href: '#solution', label: 'Solution' },
+    { href: '#product', label: 'Product' },
+    { href: '#team', label: 'Team' },
+  ];
 
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    background: 'transparent',
-    border: 'none',
-    borderBottom: '1px solid #2a2a2a',
-    padding: '8px 0',
-    color: '#f0f0f0',
-    fontSize: '14px',
-    outline: 'none',
-    boxSizing: 'border-box',
-    fontFamily: 'inherit',
-  };
+  const stats = [
+    { value: '$128K', label: 'wasted per lab per year on experiments with flawed tumor models' },
+    { value: '90%', label: 'accuracy in predicting whether a model will generate reliable data' },
+    { value: '$4.9B', label: 'preclinical contract research market Adam serves' },
+    { value: '$1.5B', label: 'bioprinted tissue market projected by 2032' },
+  ];
 
-  const labelStyle: React.CSSProperties = {
-    display: 'block',
-    fontSize: '10px',
-    color: '#555',
-    letterSpacing: '0.1em',
-    textTransform: 'uppercase',
-    marginBottom: '8px',
+  const problems = [
+    { n: '01', title: 'Models fail silently', desc: 'A flawed tumor model looks normal. You find out something was wrong only after the experiment is over.' },
+    { n: '02', title: 'Results mislead', desc: 'Inconsistent models produce inconsistent data — leading research teams to wrong conclusions about a drug.' },
+    { n: '03', title: 'The cost adds up', desc: 'Labs waste $128K per year on failed experiments. More importantly, they lose time that could have gone to better leads.' },
+  ];
+
+  const approach = [
+    { title: 'Built to spec', desc: 'We manufacture each tumor model to a defined standard — not "close enough." The structure, the cell placement, the maturation — all tracked.' },
+    { title: 'Verified before it ships', desc: 'Every model goes through our qualification check before it leaves our lab. If it doesn\'t pass, we catch it. Not you.' },
+    { title: 'Traceable record', desc: 'Each model ships with a quality record connecting how it was made to what you can expect from it in a test.' },
+    { title: 'A platform, not a one-off', desc: 'Ovarian cancer is our first application. The same qualification system will apply to every tumor type we add.' },
+  ];
+
+  const productSpecs = [
+    { label: 'Application', value: 'Cancer drug testing (preclinical)' },
+    { label: 'Cancer type', value: 'Ovarian cancer — expanding to others' },
+    { label: 'What you receive', value: 'Certified tumor model + quality certificate' },
+    { label: 'Hardware', value: '$4,000 one-time' },
+    { label: 'Subscription', value: '$2,300 / month' },
+    { label: 'Delivery', value: 'Individually verified, ready to run' },
+    { label: 'Traceability', value: 'Full record: manufacture → verification → expected response' },
+  ];
+
+  const whyNow = [
+    { n: '01', title: 'Regulatory shift', desc: 'The FDA is actively pushing for better lab-based alternatives to animal testing. The timing has never been better.' },
+    { n: '02', title: 'Growing market', desc: 'The bioprinted tissue market is projected to reach $1.5B by 2032. The preclinical research market is $4.9B today.' },
+    { n: '03', title: 'Proven demand', desc: '11 out of 13 potential customers confirmed interest in early conversations. The need is real and immediate.' },
+    { n: '04', title: 'The quality layer is missing', desc: 'Bioprinted tumor models are becoming a recognized category. The standard for verifying them doesn\'t exist yet. That\'s Adam.' },
+  ];
+
+  const team = [
+    { name: 'Dharshini Marudhamuthu', role: 'Co-founder & CEO', bio: 'Biomedical engineer with deep experience in tissue engineering and preclinical drug testing systems.' },
+    { name: 'Vitaliy Peresypkin', role: 'Co-founder & CTO', bio: 'Engineer building the systems that monitor, verify, and certify each model before it ships.' },
+  ];
+
+  const badges = ['YC W27', 'NSF', 'Dempsey Center', 'Founders Inc'];
+
+  const formFields = [
+    { key: 'name', label: 'NAME', type: 'text', placeholder: 'Your name' },
+    { key: 'email', label: 'EMAIL', type: 'email', placeholder: 'your@email.com' },
+    { key: 'org', label: 'ORGANIZATION', type: 'text', placeholder: 'Company or institution' },
+    { key: 'role', label: 'ROLE', type: 'text', placeholder: 'Your title' },
+  ];
+
+  const s = {
+    page: { fontFamily: 'inherit', background: '#0a0a0a', color: '#f0f0f0', minHeight: '100vh' } as React.CSSProperties,
+    nav: { position: 'fixed' as const, top: 0, left: 0, right: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 48px', borderBottom: '1px solid #1a1a1a', background: 'rgba(10,10,10,0.96)', backdropFilter: 'blur(8px)' } as React.CSSProperties,
+    navLogo: { fontSize: '15px', fontWeight: 500, letterSpacing: '0.02em' } as React.CSSProperties,
+    navLinks: { display: 'flex', gap: '36px' } as React.CSSProperties,
+    navLink: { fontSize: '13px', color: '#666', textDecoration: 'none' } as React.CSSProperties,
+    navCta: { fontSize: '13px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '3px' } as React.CSSProperties,
+    hero: { minHeight: '100vh', display: 'flex', flexDirection: 'column' as const, justifyContent: 'flex-end', padding: '160px 48px 80px' } as React.CSSProperties,
+    eyebrow: { fontSize: '11px', color: '#555', letterSpacing: '0.15em', textTransform: 'uppercase' as const, marginBottom: '32px' } as React.CSSProperties,
+    h1: { fontSize: 'clamp(52px, 8vw, 96px)', fontWeight: 300, lineHeight: 1.05, letterSpacing: '-0.03em', margin: '0 0 36px', maxWidth: '900px' } as React.CSSProperties,
+    heroSub: { fontSize: '18px', color: '#777', maxWidth: '520px', lineHeight: 1.75, marginBottom: '48px' } as React.CSSProperties,
+    textLink: { fontSize: '14px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '4px' } as React.CSSProperties,
+    statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' } as React.CSSProperties,
+    statCell: (last: boolean) => ({ padding: '48px 36px', borderRight: last ? 'none' : '1px solid #1a1a1a' } as React.CSSProperties),
+    statVal: { fontSize: '36px', fontWeight: 300, letterSpacing: '-0.02em', marginBottom: '12px' } as React.CSSProperties,
+    statLabel: { fontSize: '13px', color: '#555', lineHeight: 1.55 } as React.CSSProperties,
+    section: { padding: '120px 48px', borderBottom: '1px solid #1a1a1a' } as React.CSSProperties,
+    sectionLast: { padding: '120px 48px' } as React.CSSProperties,
+    secLabel: { fontSize: '11px', color: '#555', letterSpacing: '0.15em', textTransform: 'uppercase' as const, marginBottom: '64px' } as React.CSSProperties,
+    twoCol: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' } as React.CSSProperties,
+    h2: { fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' } as React.CSSProperties,
+    body: { fontSize: '15px', color: '#777', lineHeight: 1.8, marginBottom: '24px' } as React.CSSProperties,
+    cardGrid3: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1px', background: '#1a1a1a' } as React.CSSProperties,
+    cardGrid2: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: '#1a1a1a' } as React.CSSProperties,
+    card: { padding: '32px 28px', background: '#0a0a0a' } as React.CSSProperties,
+    cardNum: { fontSize: '11px', color: '#333', marginBottom: '16px' } as React.CSSProperties,
+    cardTitle: { fontSize: '14px', fontWeight: 500, marginBottom: '12px' } as React.CSSProperties,
+    cardDesc: { fontSize: '13px', color: '#555', lineHeight: 1.65 } as React.CSSProperties,
+    specTable: { border: '1px solid #1a1a1a' } as React.CSSProperties,
+    specRow: (last: boolean) => ({ display: 'grid', gridTemplateColumns: '1fr 1.4fr', padding: '16px 24px', borderBottom: last ? 'none' : '1px solid #1a1a1a' } as React.CSSProperties),
+    specLabel: { fontSize: '12px', color: '#444', letterSpacing: '0.04em' } as React.CSSProperties,
+    specVal: { fontSize: '13px', color: '#e0e0e0' } as React.CSSProperties,
+    badgeRow: { display: 'flex', gap: '12px', flexWrap: 'wrap' as const, marginTop: '40px' } as React.CSSProperties,
+    badge: { fontSize: '11px', letterSpacing: '0.1em', padding: '6px 14px', border: '1px solid #222', color: '#555' } as React.CSSProperties,
+    formField: { display: 'flex', flexDirection: 'column' as const } as React.CSSProperties,
+    formLabel: { fontSize: '10px', letterSpacing: '0.15em', color: '#444', marginBottom: '10px' } as React.CSSProperties,
+    input: { background: 'transparent', border: 'none', borderBottom: '1px solid #222', color: '#f0f0f0', fontSize: '14px', padding: '8px 0', outline: 'none', width: '100%' } as React.CSSProperties,
+    submitBtn: { background: 'transparent', border: 'none', padding: 0, color: '#f0f0f0', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '4px', textAlign: 'left' as const } as React.CSSProperties,
+    footer: { borderTop: '1px solid #1a1a1a', padding: '28px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' } as React.CSSProperties,
+    footerText: { fontSize: '12px', color: '#333' } as React.CSSProperties,
   };
 
   return (
-    <main style={{ background: '#0a0a0a', color: '#f0f0f0', fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: '100vh' }}>
-
-      {/* ── Nav ── */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(10,10,10,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid #1a1a1a', padding: '0 48px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontWeight: 600, fontSize: '15px', letterSpacing: '-0.02em' }}>Adam Biotech</span>
-        <div style={{ display: 'flex', gap: '40px', fontSize: '13px', color: '#666' }}>
-          {[['#problem', 'Problem'], ['#approach', 'Approach'], ['#product', 'Product'], ['#team', 'Team']].map(([href, label]) => (
-            <a key={href} href={href} style={{ color: '#666', textDecoration: 'none' }}>{label}</a>
+    <main style={s.page}>
+      {/* NAV */}
+      <nav style={s.nav}>
+        <span style={s.navLogo}>Adam Biotech</span>
+        <div style={s.navLinks}>
+          {navLinks.map(l => (
+            <a key={l.href} href={l.href} style={s.navLink}>{l.label}</a>
           ))}
         </div>
-        <a href="#contact" style={{ fontSize: '13px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-          Partner with us →
-        </a>
+        <a href="#contact" style={s.navCta}>Partner with us →</a>
       </nav>
 
-      {/* ── Hero ── */}
-      <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '120px 48px 80px', maxWidth: '960px', margin: '0 auto' }}>
-        <div style={{ fontSize: '11px', letterSpacing: '0.12em', color: '#444', textTransform: 'uppercase', marginBottom: '40px' }}>
-          YC W27 · Founders Inc · NSF I-Corps · Dempsey Sweet 16
-        </div>
-        <h1 style={{ fontSize: 'clamp(36px, 5.5vw, 68px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '36px', maxWidth: '820px' }}>
-          Tumor models that work.
-          <br />
-          <span style={{ color: '#555' }}>Certified before they reach your lab.</span>
-        </h1>
-        <p style={{ fontSize: '17px', color: '#777', lineHeight: 1.8, maxWidth: '520px', marginBottom: '52px' }}>
-          Adam Biotech builds human tumor models for cancer drug testing — and we verify that every single one is ready to use before it ships.
+      {/* HERO */}
+      <section style={s.hero}>
+        <p style={s.eyebrow}>YC W27 · NSF · Dempsey Center · Founders Inc</p>
+        <h1 style={s.h1}>Tumor models<br />that actually work.</h1>
+        <p style={s.heroSub}>
+          Adam Biotech builds certified human tumor models for cancer drug testing —
+          and verifies every single one is ready before it reaches your lab.
         </p>
-        <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-          <a href="#contact" style={{ fontSize: '14px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
-            Request access →
-          </a>
-          <a href="#problem" style={{ fontSize: '14px', color: '#555', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
-            Learn more →
-          </a>
-        </div>
+        <a href="#problem" style={s.textLink}>See how it works ↓</a>
       </section>
 
-      {/* ── Stats bar ── */}
-      <section style={{ borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {[
-            { value: '$128K', label: 'wasted per lab each year on failed experiments' },
-            { value: '90%', label: 'accuracy catching failed models before they ship' },
-            { value: '$4.9B', label: 'preclinical testing market' },
-            { value: '$1.5B', label: 'bioprinting market by 2032' },
-          ].map((s, i) => (
-            <div key={i} style={{ padding: '44px 36px', borderRight: i < 3 ? '1px solid #1a1a1a' : 'none' }}>
-              <div style={{ fontSize: '38px', fontWeight: 300, letterSpacing: '-0.03em', marginBottom: '10px' }}>{s.value}</div>
-              <div style={{ fontSize: '12px', color: '#444', lineHeight: 1.6 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* STATS */}
+      <div style={s.statsGrid}>
+        {stats.map((st, i) => (
+          <div key={i} style={s.statCell(i === stats.length - 1)}>
+            <div style={s.statVal}>{st.value}</div>
+            <div style={s.statLabel}>{st.label}</div>
+          </div>
+        ))}
+      </div>
 
-      {/* ── 01 Problem ── */}
-      <section id="problem" style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+      {/* 01 PROBLEM */}
+      <section id="problem" style={s.section}>
+        <p style={s.secLabel}>01 · The Problem</p>
+        <div style={s.twoCol}>
+          <h2 style={s.h2}>Most tumor models used in drug testing are unreliable.</h2>
           <div>
-            <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>01 · The Problem</div>
-            <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-              Drug testing starts with lab models that routinely let researchers down.
-            </h2>
-          </div>
-          <div style={{ paddingTop: '52px' }}>
-            <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginBottom: '28px' }}>
-              When a drug candidate enters the lab, it gets tested on tumor models — small 3D constructs meant to mimic real cancer tissue. The problem? Most of these models fail silently. They look fine, but the data they produce doesn't reflect how the drug would actually behave in a patient.
+            <p style={s.body}>
+              When a pharmaceutical company tests a new cancer drug, they use lab-grown tumor models — small human tissue constructs
+              that mimic a real tumor. The goal is to find out if the drug works before spending millions on clinical trials.
             </p>
-            <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85 }}>
-              Labs spend months — and an average of $128,000 per year — running experiments they can't trust. By the time the failure shows up, the damage is done: wasted resources, misleading results, and drugs that looked promising in the lab but failed in the clinic.
+            <p style={s.body}>
+              The problem: these models are inconsistent. They behave differently batch-to-batch, and no one catches it until
+              after the experiment — wasting compounds, time, and critical go/no-go decisions.
             </p>
-            <div style={{ marginTop: '52px' }}>
-              {[
-                ['01', 'No way to know if a model will work before you use it'],
-                ['02', 'Results vary batch to batch — hard to compare studies'],
-                ['03', 'Failures surface after months of wasted work'],
-              ].map(([n, t]) => (
-                <div key={n} style={{ padding: '20px 0', borderTop: '1px solid #1a1a1a', display: 'flex', gap: '24px' }}>
-                  <span style={{ fontSize: '11px', color: '#333', letterSpacing: '0.05em', flexShrink: 0, paddingTop: '2px' }}>{n}</span>
-                  <span style={{ fontSize: '14px', color: '#bbb', lineHeight: 1.65 }}>{t}</span>
+            <div style={s.cardGrid3}>
+              {problems.map(c => (
+                <div key={c.n} style={s.card}>
+                  <p style={s.cardNum}>{c.n}</p>
+                  <p style={s.cardTitle}>{c.title}</p>
+                  <p style={s.cardDesc}>{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -129,105 +166,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 02 Approach ── */}
-      <section id="approach" style={{ borderTop: '1px solid #1a1a1a', background: '#0d0d0d' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>02 · Our Approach</div>
-              <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                We certify every model before it leaves our lab.
-              </h2>
-            </div>
-            <div style={{ paddingTop: '52px' }}>
-              <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginBottom: '28px' }}>
-                Adam Biotech doesn't just manufacture tumor models — we qualify them. Every model we build goes through a rigorous certification process: we track manufacturing data throughout production, then take early biological measurements, and combine both into a clear pass/fail decision.
-              </p>
-              <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginBottom: '40px' }}>
-                If a model doesn't pass certification, it doesn't ship. Labs receive only models that are verified, traceable, and ready to generate results you can actually act on.
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: '#1a1a1a' }}>
-                {[
-                  ['Track production', 'Every step of manufacturing is logged and measured'],
-                  ['Measure biology early', 'Cell behavior is assessed against defined benchmarks'],
-                  ['Certify or reject', 'Each model gets a clear pass/fail before it ships'],
-                  ['Full traceability', 'Every result is tied back to exactly how the model was made'],
-                ].map(([title, desc]) => (
-                  <div key={title} style={{ background: '#0d0d0d', padding: '28px 24px' }}>
-                    <div style={{ fontSize: '13px', fontWeight: 500, color: '#e0e0e0', marginBottom: '10px' }}>{title}</div>
-                    <div style={{ fontSize: '12px', color: '#444', lineHeight: 1.6 }}>{desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 03 Product ── */}
-      <section id="product" style={{ borderTop: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>03 · Product</div>
-              <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                OvaMatrix-R
-              </h2>
-              <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginTop: '24px' }}>
-                Our first certified tumor model. Purpose-built for ovarian cancer drug testing — designed to produce reliable, comparable results study after study.
-              </p>
-              <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginTop: '16px' }}>
-                Every OvaMatrix-R model ships with a certification record. You know exactly how it was made and that it passed quality before it reached you.
-              </p>
-              <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '4px', marginTop: '36px' }}>
-                Request a sample →
-              </a>
-            </div>
-            <div style={{ paddingTop: '52px' }}>
-              <div>
-                {[
-                  ['Cancer type', 'Ovarian cancer'],
-                  ['Designed for', 'Drug response & treatment sensitivity testing'],
-                  ['Quality', 'Every model individually certified'],
-                  ['Consistency', 'Batch-to-batch comparable results'],
-                  ['Records', 'Full manufacturing history included'],
-                  ['Platform', 'Expandable to additional cancer types'],
-                  ['Contact', 'founders@adambiotech.com'],
-                ].map(([label, value], i) => (
-                  <div key={label} style={{ padding: '18px 0', borderBottom: i < 6 ? '1px solid #1a1a1a' : 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '24px' }}>
-                    <span style={{ fontSize: '11px', color: '#444', textTransform: 'uppercase', letterSpacing: '0.06em', flexShrink: 0 }}>{label}</span>
-                    <span style={{ fontSize: '13px', color: '#bbb', textAlign: 'right' }}>{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 04 Why Now ── */}
-      <section style={{ borderTop: '1px solid #1a1a1a', background: '#0d0d0d' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>04 · Why Now</div>
-              <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                The market is large. The quality standard doesn't exist yet.
-              </h2>
-            </div>
-            <div style={{ paddingTop: '52px' }}>
-              {[
-                ['01', 'Regulators want better preclinical methods', 'The FDA is actively pushing drug developers to move beyond animal testing toward human tissue models. Demand for reliable alternatives is growing.'],
-                ['02', '$4.9B market with no certification layer', 'The preclinical CRO market is large and growing. Labs are already spending heavily on tumor models — but there\'s no quality standard for what they\'re buying.'],
-                ['03', 'Labs are ready to switch', 'In direct conversations with potential customers, 11 out of 13 indicated they\'d purchase a certified model if one were available. The demand is there.'],
-                ['04', 'Nobody has built what Adam is building', 'Others are making models. Nobody has built the certification system that makes them trustworthy. That\'s where Adam is positioned.'],
-              ].map(([n, title, desc]) => (
-                <div key={n} style={{ padding: '28px 0', borderTop: '1px solid #1a1a1a' }}>
-                  <div style={{ display: 'flex', gap: '20px', marginBottom: '10px' }}>
-                    <span style={{ fontSize: '11px', color: '#333', letterSpacing: '0.05em', flexShrink: 0, paddingTop: '2px' }}>{n}</span>
-                    <span style={{ fontSize: '14px', fontWeight: 500, color: '#e8e8e8' }}>{title}</span>
-                  </div>
-                  <div style={{ fontSize: '13px', color: '#555', lineHeight: 1.7, paddingLeft: '31px' }}>{desc}</div>
+      {/* 02 SOLUTION */}
+      <section id="solution" style={s.section}>
+        <p style={s.secLabel}>02 · Our Approach</p>
+        <div style={s.twoCol}>
+          <h2 style={s.h2}>We certify every model before it leaves our lab.</h2>
+          <div>
+            <p style={s.body}>
+              Adam Biotech has built a quality system for tumor models. We monitor how each model is made —
+              from how cells are placed to how the construct matures — and verify it will perform correctly
+              in a drug test before we ship it.
+            </p>
+            <p style={{ ...s.body, marginBottom: '40px' }}>
+              Think of it as the quality standard the field has been missing.
+              Adam isn&apos;t building just another tumor model — we&apos;re building the infrastructure
+              that makes human tumor models trustworthy for drug-development decisions.
+            </p>
+            <div style={s.cardGrid2}>
+              {approach.map((c, i) => (
+                <div key={i} style={s.card}>
+                  <p style={s.cardTitle}>{c.title}</p>
+                  <p style={s.cardDesc}>{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -235,122 +194,130 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 05 Team ── */}
-      <section id="team" style={{ borderTop: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>05 · Team</div>
-              <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                Built by founders who understand both the biology and the build.
-              </h2>
-            </div>
-            <div style={{ paddingTop: '52px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-                {[
-                  {
-                    name: 'Dharshini Hariharan',
-                    role: 'CEO & Co-Founder',
-                    bio: 'Biomedical engineer with deep expertise in 3D tissue modeling and cancer biology. Leads product strategy, customer development, and the science of what makes a good tumor model.',
-                  },
-                  {
-                    name: 'Vitaliy Bondarenko',
-                    role: 'CTO & Co-Founder',
-                    bio: 'Systems engineer specializing in manufacturing quality and process control. Architecting the certification platform that makes every Adam model traceable and verifiable.',
-                  },
-                ].map((p) => (
-                  <div key={p.name}>
-                    <div style={{ fontSize: '15px', fontWeight: 500, color: '#f0f0f0', marginBottom: '4px' }}>{p.name}</div>
-                    <div style={{ fontSize: '11px', color: '#444', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{p.role}</div>
-                    <div style={{ fontSize: '13px', color: '#5a5a5a', lineHeight: 1.75 }}>{p.bio}</div>
-                  </div>
-                ))}
-                <div style={{ paddingTop: '8px', borderTop: '1px solid #1a1a1a' }}>
-                  <div style={{ fontSize: '11px', color: '#333', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '18px' }}>Backed by</div>
-                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    {['YC W27', 'Founders Inc', 'NSF I-Corps', 'Dempsey Sweet 16'].map((b) => (
-                      <span key={b} style={{ fontSize: '11px', color: '#444', border: '1px solid #222', padding: '5px 12px', letterSpacing: '0.05em' }}>{b}</span>
-                    ))}
-                  </div>
-                </div>
+      {/* 03 PRODUCT */}
+      <section id="product" style={s.section}>
+        <p style={s.secLabel}>03 · Product</p>
+        <div style={s.twoCol}>
+          <div>
+            <h2 style={{ ...s.h2, marginBottom: '20px' }}>OvaMatrix-R</h2>
+            <p style={{ fontSize: '15px', color: '#555', marginBottom: '28px', lineHeight: 1.6 }}>A certified ovarian cancer model for drug testing.</p>
+            <p style={s.body}>
+              OvaMatrix-R is our first product — a human tumor model purpose-built for testing cancer drugs against ovarian cancer.
+              It&apos;s not just a tissue construct. It&apos;s a verified assay.
+            </p>
+            <p style={s.body}>
+              You get reliable results from day one, with a traceable record connecting how the model was made
+              to what you can expect from it in a test. Use it to evaluate whether a compound is effective
+              before committing to expensive downstream studies.
+            </p>
+            <a href="#contact" style={{ ...s.textLink, display: 'inline-block', marginTop: '16px' }}>Request early access →</a>
+          </div>
+          <div style={s.specTable}>
+            {productSpecs.map((r, i) => (
+              <div key={i} style={s.specRow(i === productSpecs.length - 1)}>
+                <span style={s.specLabel}>{r.label}</span>
+                <span style={s.specVal}>{r.value}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 04 WHY NOW */}
+      <section style={s.section}>
+        <p style={s.secLabel}>04 · Why Now</p>
+        <div style={s.twoCol}>
+          <h2 style={s.h2}>The field is ready for a quality standard. No one has built it yet.</h2>
+          <div style={s.cardGrid2}>
+            {whyNow.map(c => (
+              <div key={c.n} style={s.card}>
+                <p style={s.cardNum}>{c.n}</p>
+                <p style={s.cardTitle}>{c.title}</p>
+                <p style={s.cardDesc}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 05 TEAM */}
+      <section id="team" style={s.section}>
+        <p style={s.secLabel}>05 · Team</p>
+        <div style={s.twoCol}>
+          <h2 style={s.h2}>Built by scientists who understand how hard this problem is.</h2>
+          <div>
+            <div style={s.cardGrid2}>
+              {team.map((m, i) => (
+                <div key={i} style={s.card}>
+                  <p style={s.cardTitle}>{m.name}</p>
+                  <p style={{ fontSize: '12px', color: '#444', letterSpacing: '0.05em', marginBottom: '14px' }}>{m.role}</p>
+                  <p style={s.cardDesc}>{m.bio}</p>
+                </div>
+              ))}
+            </div>
+            <div style={s.badgeRow}>
+              {badges.map(b => (
+                <span key={b} style={s.badge}>{b}</span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 06 Contact ── */}
-      <section id="contact" style={{ borderTop: '1px solid #1a1a1a', background: '#0d0d0d' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '120px 48px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#444', textTransform: 'uppercase', marginBottom: '28px' }}>06 · Contact</div>
-              <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                Let's work together.
-              </h2>
-              <p style={{ fontSize: '15px', color: '#777', lineHeight: 1.85, marginTop: '24px' }}>
-                We're actively partnering with pharma companies, biotech labs, and CROs who want to move to certified tumor models. If you're running drug development work and want models you can trust, let's talk.
-              </p>
-              <div style={{ marginTop: '36px' }}>
-                <a href="mailto:founders@adambiotech.com" style={{ fontSize: '14px', color: '#f0f0f0', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
-                  founders@adambiotech.com →
-                </a>
-              </div>
-            </div>
-            <div style={{ paddingTop: '52px' }}>
-              {submitted ? (
-                <div style={{ padding: '40px 0' }}>
-                  <p style={{ fontSize: '14px', color: '#777', lineHeight: 1.8 }}>Thanks — we'll be in touch shortly at <span style={{ color: '#f0f0f0' }}>{formData.email}</span>.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
-                  {[
-                    { id: 'name', label: 'Your name', type: 'text' },
-                    { id: 'email', label: 'Email address', type: 'email' },
-                    { id: 'organization', label: 'Organization', type: 'text' },
-                    { id: 'role', label: 'Your role', type: 'text' },
-                  ].map((f) => (
-                    <div key={f.id}>
-                      <label style={labelStyle}>{f.label}</label>
-                      <input
-                        type={f.type}
-                        value={formData[f.id as keyof typeof formData]}
-                        onChange={(e) => setFormData({ ...formData, [f.id]: e.target.value })}
-                        required
-                        style={inputStyle}
-                      />
-                    </div>
-                  ))}
-                  <div>
-                    <label style={labelStyle}>How can we help</label>
-                    <textarea
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      rows={4}
-                      style={{ ...inputStyle, resize: 'none' }}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    style={{ alignSelf: 'flex-start', background: 'transparent', border: 'none', color: '#f0f0f0', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '4px', padding: 0, fontFamily: 'inherit' }}
-                  >
-                    Send message →
-                  </button>
-                </form>
-              )}
-            </div>
+      {/* 06 CONTACT */}
+      <section id="contact" style={s.sectionLast}>
+        <p style={s.secLabel}>06 · Contact</p>
+        <div style={s.twoCol}>
+          <div>
+            <h2 style={{ ...s.h2, marginBottom: '24px' }}>Partner with us.</h2>
+            <p style={s.body}>
+              We&apos;re working with early partners — pharma research teams, CROs, and investors
+              who see the gap in tumor model quality and want to be part of closing it.
+            </p>
+            <p style={{ fontSize: '14px', color: '#555', marginTop: '16px' }}>
+              founders@adambiotech.com
+            </p>
           </div>
+          {!sent ? (
+            <form onSubmit={e => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              {formFields.map(f => (
+                <div key={f.key} style={s.formField}>
+                  <label style={s.formLabel}>{f.label}</label>
+                  <input
+                    type={f.type}
+                    placeholder={f.placeholder}
+                    value={form[f.key as keyof typeof form]}
+                    onChange={e => setForm({ ...form, [f.key]: e.target.value })}
+                    style={s.input}
+                  />
+                </div>
+              ))}
+              <div style={s.formField}>
+                <label style={s.formLabel}>MESSAGE</label>
+                <textarea
+                  placeholder="What are you working on?"
+                  rows={4}
+                  value={form.message}
+                  onChange={e => setForm({ ...form, message: e.target.value })}
+                  style={{ ...s.input, resize: 'none' }}
+                />
+              </div>
+              <button type="submit" style={s.submitBtn}>Send message →</button>
+            </form>
+          ) : (
+            <div style={{ paddingTop: '40px' }}>
+              <p style={{ fontSize: '20px', fontWeight: 300, marginBottom: '12px' }}>Thank you — we&apos;ll be in touch.</p>
+              <p style={{ fontSize: '14px', color: '#555' }}>Expect a reply from the founders within 24 hours.</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer style={{ borderTop: '1px solid #1a1a1a' }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '32px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '12px', color: '#333' }}>© 2026 Adam Biotech</span>
-          <a href="mailto:founders@adambiotech.com" style={{ fontSize: '12px', color: '#333', textDecoration: 'none' }}>founders@adambiotech.com</a>
-        </div>
+      {/* FOOTER */}
+      <footer style={s.footer}>
+        <span style={s.footerText}>Adam Biotech · adambiotech.com</span>
+        <span style={s.footerText}>© 2026</span>
       </footer>
-
     </main>
   );
 }
