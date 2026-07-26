@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adam Biotech — Certified Tumor Models for Drug Testing</title>
+  <meta name="description" content="Adam Biotech builds certified human tumor models for cancer drug testing. Every model is individually verified before it ships." />
+  <meta property="og:title" content="Adam Biotech — Certified Tumor Models for Drug Testing" />
+  <meta property="og:description" content="We build human tumor models for cancer drug testing and certify every one before it reaches your lab." />
+  <meta property="og:url" content="https://adambiotech-v2-dharshinimarus-projects.vercel.app" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --text: #e0e0e0;
+      --muted: #777;
+      --dim: #444;
+      --border: #1c1c1c;
+      --white: #fff;
+      --accent: #bbb;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; color: var(--white); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { font-size: 13px; color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* HERO */
+    .hero {
+      max-width: 1200px; margin: 0 auto; padding: 152px 32px 112px;
+    }
+    .badges { display: flex; gap: 10px; margin-bottom: 48px; flex-wrap: wrap; }
+    .badge {
+      font-size: 11px; padding: 4px 10px;
+      border: 1px solid #242424; border-radius: 20px;
+      color: #555; letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 300; line-height: 1.08;
+      letter-spacing: -2.5px; color: var(--white);
+      max-width: 820px; margin-bottom: 28px;
+    }
+    .hero-sub {
+      font-size: 18px; color: var(--muted);
+      max-width: 500px; line-height: 1.75; margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero-actions a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+    .link-primary { color: var(--text); }
+    .link-muted { color: #555; }
+
+    /* STATS */
+    .stats-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-cell {
+      padding: 36px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-v { font-size: 34px; font-weight: 300; letter-spacing: -1px; color: var(--white); margin-bottom: 8px; }
+    .stat-l { font-size: 12px; color: #4a4a4a; line-height: 1.5; max-width: 160px; }
+
+    /* SECTIONS */
+    section { border-bottom: 1px solid var(--border); }
+    .section-inner {
+      max-width: 1200px; margin: 0 auto; padding: 96px 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .section-label {
+      font-size: 11px; color: #444; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    h2 {
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 300; letter-spacing: -1px;
+      color: var(--white); line-height: 1.2;
+    }
+    .section-right { padding-top: 52px; }
+    .body-text {
+      font-size: 15px; color: var(--muted);
+      line-height: 1.8; margin-bottom: 24px;
+    }
+    .body-text:last-of-type { margin-bottom: 40px; }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid; gap: 1px; background: var(--border);
+    }
+    .cards-grid.col2 { grid-template-columns: 1fr 1fr; }
+    .cards-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+    .card {
+      background: var(--bg); padding: 24px 18px;
+    }
+    .card-num { font-size: 11px; color: #333; margin-bottom: 10px; }
+    .card-title { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+    .card-body { font-size: 12px; color: #555; line-height: 1.6; }
+
+    /* WHY NOW LIST */
+    .why-list { display: flex; flex-direction: column; gap: 0; }
+    .why-item {
+      display: grid; grid-template-columns: 36px 1fr; gap: 16px;
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .why-item:last-child { border-bottom: none; }
+    .why-num { font-size: 11px; color: #333; padding-top: 2px; }
+    .why-title { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+    .why-body { font-size: 12px; color: #555; line-height: 1.65; }
+
+    /* PRODUCT TABLE */
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 14px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+    td:first-child { font-size: 12px; color: #444; width: 44%; }
+    td:last-child { font-size: 13px; color: var(--accent); }
+    tr:last-child td { border-bottom: none; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-bottom: 32px; }
+    .team-card { background: var(--bg); padding: 24px 18px; }
+    .team-name { font-size: 13px; color: #ccc; font-weight: 500; margin-bottom: 4px; }
+    .team-role { font-size: 11px; color: #444; margin-bottom: 10px; letter-spacing: 0.04em; }
+    .team-bio { font-size: 12px; color: #555; line-height: 1.6; }
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* CONTACT */
+    .contact-email { font-size: 13px; color: var(--dim); margin-top: 28px; }
+    form { display: flex; flex-direction: column; gap: 28px; }
+    .field label {
+      display: block; font-size: 11px; color: #444;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .field input, .field textarea {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1px solid #222;
+      color: var(--text); font-size: 14px;
+      padding: 6px 0; outline: none;
+      font-family: inherit; resize: none;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #333; }
+    .submit-btn {
+      align-self: flex-start; font-size: 13px;
+      color: var(--text); text-decoration: underline;
+      text-underline-offset: 4px; background: none;
+      border: none; cursor: pointer; padding: 0;
+      font-family: inherit;
+    }
+    .submit-btn:hover { color: #fff; }
+    .thanks { font-size: 15px; color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto; padding: 28px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-inner span { font-size: 12px; color: #333; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .section-inner { grid-template-columns: 1fr; gap: 40px; }
+      .section-right { padding-top: 0; }
+      .cards-grid.col3 { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .cards-grid.col2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Adam Biotech</a>
+      <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#science">Science</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="nav-cta">Book a call ↗</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="border-bottom: none;">
+    <div class="hero">
+      <div class="badges">
+        <span class="badge">YC W27</span>
+        <span class="badge">NSF Grant</span>
+        <span class="badge">Dempsey Challenge</span>
+        <span class="badge">Founders Inc</span>
+      </div>
+      <h1>The quality standard<br />for human tumor models.</h1>
+      <p class="hero-sub">We build certified ovarian cancer models that research teams can trust for real drug development decisions.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="link-primary">Request a sample ↗</a>
+        <a href="#science" class="link-muted">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-v">$128K</div>
+        <div class="stat-l">wasted per lab per year on failed experiments</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-v">90%</div>
+        <div class="stat-l">accuracy detecting a model that will fail</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-v">$4.9B</div>
+        <div class="stat-l">preclinical CRO market size</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-v">11 / 13</div>
+        <div class="stat-l">pharma buyers ready to switch to certified models</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 PROBLEM -->
+  <section id="science">
+    <div class="section-inner">
+      <div>
+        <p class="section-label">01 · The Problem</p>
+        <h2>Most lab tumor models fail — and you don't find out until it's too late.</h2>
+      </div>
+      <div class="section-right">
+        <p class="body-text">Research teams spend months running experiments on tumor models that silently don't work. The models look fine on the outside — but the biology is off, the results are misleading, and promising drugs get abandoned for the wrong reasons.</p>
+        <p class="body-text">The result: <strong style="color:#ccc">$128K wasted per lab, per year</strong> — and cancer drugs failing in clinical trials that shouldn't have.</p>
+        <div class="cards-grid col3">
+          <div class="card">
+            <p class="card-num">01</p>
+            <p class="card-title">No quality checks</p>
+            <p class="card-body">Models ship with no verification that they'll produce reliable data.</p>
+          </div>
+          <div class="card">
+            <p class="card-num">02</p>
+            <p class="card-title">Silent failures</p>
+            <p class="card-body">A model can look healthy and still give completely wrong drug-response results.</p>
+          </div>
+          <div class="card">
+            <p class="card-num">03</p>
+            <p class="card-title">Wasted resources</p>
+            <p class="card-body">Labs often only discover the problem after months of experiments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 APPROACH -->
+  <section>
+    <div class="section-inner">
+      <div>
+        <p class="section-label">02 · Our Approach</p>
+        <h2>We certify every model before it ships.</h2>
+      </div>
+      <div class="section-right">
+        <p class="body-text">Adam builds 3D human tumor models that closely mimic real cancer biology. But our core innovation is what happens before the model reaches you: a qualification process that confirms every single construct will give reliable results.</p>
+        <p class="body-text">Think of it like a certificate of analysis for your tumor model — you know exactly what you're working with before your experiment starts.</p>
+        <div class="cards-grid col2">
+          <div class="card">
+            <p class="card-num">01</p>
+            <p class="card-title">Build</p>
+            <p class="card-body">3D human tumor model constructed with precise cell ratios and structure.</p>
+          </div>
+          <div class="card">
+            <p class="card-num">02</p>
+            <p class="card-title">Measure</p>
+            <p class="card-body">We collect biological readings throughout manufacturing — not just a snapshot.</p>
+          </div>
+          <div class="card">
+            <p class="card-num">03</p>
+            <p class="card-title">Qualify</p>
+            <p class="card-body">Our system determines whether the model will give reliable results for your assay.</p>
+          </div>
+          <div class="card">
+            <p class="card-num">04</p>
+            <p class="card-title">Ship</p>
+            <p class="card-body">Only models that pass qualification leave our lab — with a data certificate attached.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 PRODUCT -->
+  <section id="product">
+    <div class="section-inner">
+      <div>
+        <p class="section-label">03 · Product</p>
+        <h2>OvaMatrix-R</h2>
+        <p class="body-text">Our first certified tumor model — built for ovarian cancer drug testing. Ships ready to use, with a qualification certificate included.</p>
+        <a href="#contact" class="link-primary" style="font-size:13px; text-decoration:underline; text-underline-offset:4px;">Request access ↗</a>
+      </div>
+      <div class="section-right">
+        <table>
+          <tbody>
+            <tr><td>Model type</td><td>Human ovarian cancer · 3D construct</td></tr>
+            <tr><td>Format</td><td>Multi-well plate, ready to use</td></tr>
+            <tr><td>Qualification</td><td>Certificate of assay-readiness included</td></tr>
+            <tr><td>Cell lines</td><td>Ovarian cancer + peritoneal stroma</td></tr>
+            <tr><td>Compatible assays</td><td>Drug response, invasion, co-culture</td></tr>
+            <tr><td>Hardware</td><td>$4,000 one-time setup</td></tr>
+            <tr><td>Service</td><td>$2,300 / month</td></tr>
+            <tr><td>Lead time</td><td>2–3 weeks from order</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 WHY NOW -->
+  <section>
+    <div class="section-inner">
+      <div>
+        <p class="section-label">04 · Why Now</p>
+        <h2>The market is ready.<br />The quality layer doesn't exist yet.</h2>
+      </div>
+      <div class="section-right">
+        <div class="why-list">
+          <div class="why-item">
+            <span class="why-num">01</span>
+            <div>
+              <p class="why-title">FDA is moving away from animal testing</p>
+              <p class="why-body">New FDA guidance encourages human-relevant models for drug development — creating real urgency for better 3D tumor assays.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-num">02</span>
+            <div>
+              <p class="why-title">A $4.9B market with no quality standard</p>
+              <p class="why-body">The preclinical CRO space is massive and growing. Nobody yet offers certified, verified tumor models at scale.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-num">03</span>
+            <div>
+              <p class="why-title">11 of 13 pharma buyers said they'd switch</p>
+              <p class="why-body">In early conversations, 11 out of 13 pharma and biotech teams said they would use Adam if the quality guarantee existed.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-num">04</span>
+            <div>
+              <p class="why-title">Ovarian cancer needs better tools</p>
+              <p class="why-body">It's one of the most lethal cancers. Survival rates haven't improved much in decades — largely because preclinical models don't reliably predict treatment response.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 TEAM -->
+  <section id="team">
+    <div class="section-inner">
+      <div>
+        <p class="section-label">05 · Team</p>
+        <h2>Scientists who understand both the biology and the business.</h2>
+      </div>
+      <div class="section-right">
+        <div class="team-grid">
+          <div class="team-card">
+            <p class="team-name">Dharshini Maru</p>
+            <p class="team-role">CEO &amp; Co-Founder</p>
+            <p class="team-bio">Biomedical engineer with expertise in bioprinting and cancer biology. Focused on commercializing advanced human tissue models.</p>
+          </div>
+          <div class="team-card">
+            <p class="team-name">Vitaliy</p>
+            <p class="team-role">CTO &amp; Co-Founder</p>
+            <p class="team-bio">Engineer specializing in biosensor systems, manufacturing automation, and real-time biological monitoring.</p>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge">YC W27</span>
+          <span class="badge">NSF Grant</span>
+          <span class="badge">Dempsey Innovation Challenge</span>
+          <span class="badge">Founders Inc</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div>
+        <p class="section-label">06 · Contact</p>
+        <h2>Let's talk.</h2>
+        <p class="body-text" style="margin-top:16px">Whether you're a pharma partner, an investor, or a lab looking for better models — we'd love to hear from you.</p>
+        <p class="contact-email">founders@adambiotech.com</p>
+      </div>
+      <div class="section-right">
+        <div id="form-wrap">
+          <form id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="field">
+              <label>Full name</label>
+              <input type="text" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="jane@company.com" required />
+            </div>
+            <div class="field">
+              <label>Organisation</label>
+              <input type="text" name="org" placeholder="Pharma / Biotech / Academic lab" />
+            </div>
+            <div class="field">
+              <label>Role</label>
+              <input type="text" name="role" placeholder="e.g. VP Drug Discovery" />
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea name="message" rows="4" placeholder="Tell us about your research or what you're looking for..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send message ↗</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2025 Adam Biotech, Inc.</span>
+      <span>founders@adambiotech.com</span>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-wrap').innerHTML = '<p class="thanks">Thanks — we\'ll be in touch shortly.</p>';
+    }
+  </script>
+</body>
+</html>
