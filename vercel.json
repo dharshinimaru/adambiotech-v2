@@ -1,7 +1,6 @@
 {
   "version": 2,
-  "framework": null,
-  "buildCommand": null,
+  "buildCommand": "echo done",
   "outputDirectory": ".",
-  "installCommand": null
+  "installCommand": ""
 }
